@@ -1,0 +1,68 @@
+---------------------------------------------------------
+CHAPTER 3 - THE GEOSPATIAL TECHNOLOGY LANDSCAPE
+---------------------------------------------------------
+
+- Data Access
+
+    - GDAL
+
+    - Computational Geometry
+
+    - The PROJ Projection Library
+
+    - CGAL
+
+    - JTS
+
+    - GEOS
+
+    - PostGIS
+
+    - Other Spatially Enabled Databases
+
+        - Oracle Spatial and Graph
+
+        - ArcSDE
+
+        - Sql Server
+
+        - MySQL
+
+        - SpatiaLite
+
+        - GeoPackage
+
+
+- Routing
+
+    - Esri Network Analyst and Spatial Analyst
+
+    - pgRouting
+
+
+- Desktop Tools
+
+    - Quantum GIS
+
+    - OpenEV
+
+    - GRASS GIS
+
+    - gvSIG
+
+    - OpenJUMP
+
+    - Google Earth
+
+    - NASA WorldWind
+
+    - ArcGIS
+
+
+- Metadata Management
+
+    - Python's 'pycsw' Library
+
+    - GeoNode
+
+    - GeoNetwork
