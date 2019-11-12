@@ -1,0 +1,84 @@
+---------------------------------------------------------
+CHAPTER 1 - LEARNING GEOSPATIAL ANALYSIS
+---------------------------------------------------------
+
+- History of Geospatial Analysis
+
+    - 1832 - Charles Picquet tracks cholera outbreaks in Paris by plotting the homes of
+               the patients on a map of the city.
+
+    - 1854 - John Snow uses this method to track the source of a cholera outbreak in 
+               London.
+
+    - 1850-1870 - Charles Minard develops modern infographics.
+
+    - Early 1900s - Map layers are created by putting different layers on different plates
+                      of glass.
+
+
+- GIS
+
+    - Mid 1960s - Roger Tomlinson leads development of the Canada GIS.
+
+    - Mid 1960s - Howard Fisher creates SYMAP GIS (GRID and Odyssey were successors)
+
+
+
+- Remote Sensing
+
+- Elevation Data
+
+- CAD
+
+- The Importance of Geospatial Analysis
+
+- GIS Concepts
+
+    - Thematic Maps
+
+    - Spatial Indexing
+
+    - Metadata
+
+    - Map Projections
+
+    - Rendering
+
+- Remote Sensing Concepts
+
+    - Images as Data
+
+    - Remote Sensing and Color
+
+- Vector GIS Concepts
+
+    - Data Structures
+
+    - Geospatial Rules About Polygons
+
+    - Buffer
+
+    - Dissolve
+
+    - Generalize
+
+    - Intersection
+
+    - Union
+
+    - Join
+
+- Raster Data Concepts
+
+    - Band Math
+
+    - Change Detection
+
+    - Histogram
+
+    - Feature Extraction
+
+    - Supervised and Unsupervised Learning
+
+
+- Creating the Simplest Possible GIS
