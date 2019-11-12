@@ -166,25 +166,140 @@ CHAPTER 1 - LEARNING GEOSPATIAL ANALYSIS
 
     - Images as Data
 
+        - Raster data is captured digitally as square tiles.  This means that the data is stored
+            in a numerical array of rows and columns.  If the data is multispectral, the dataset
+            will usually contain multiple arrays of the same size.  These different arrays are
+            called 'bands'.
+
+        - In geospatial analysis, it's important to think of images as a numeric array because
+            mathematical formulas are used to process them.
+
+        - In remotely sensed images, each pixel represents both space (the location on Earth of
+            a certain size) and reflectance (captured as light reflected from the Earth at that
+            location into space).  So, each pixel has a ground size and contains a number
+            representing the intensity.
+
+
     - Remote Sensing and Color
+
+        - Computer screens display images as a combination of Red, Green, and Blue.
+            Satellites and other remote sensing imaging devices can capture light beyond this
+            visible spectrum.  
+
+        - On a computer, wavelengths beyond the visible spectrum are represented in the
+            visible spectrum so that we can see them.  These images are known as 'false color'
+            images.
+
+        - For instance, in remote sensing, infrared light makes moisture highly visible.
+
+
 
 - Vector GIS Concepts
 
     - Data Structures
 
+        - GIS vector data has at least (x, y) values and often a z value as well.  Other
+            ancillary values are possible, like a timestamp.
+
+        - These coordinates are used to form points, lines, and polygons to make real-world
+            objects.  Points can connect line segments.  Closed areas created by line
+            segments are polygons.
+
+        - Vector data typically represents topographic features better than raster data.  
+            Vector data has more accuracy potential and is more precise.  However, collecting
+            vector data on a large scale is traditionally costlier than raster data.
+
+        - A 'bounding box' is the smallest possible square that contains all of the points in
+            a dataset.  
+
+        - A 'convex hull' is the smallest possible polygon that contains all the points in a 
+            dataset.
+
+
     - Geospatial Rules About Polygons
+
+        - Rules of Thumb:
+
+            1. Polygons must have at least 4 points.
+            2. A polygon boundary should not overlap itself.
+            3. Polygons in a layer shouldn't overlap.
+            4. A polygon in a layer inside another polygon is considered a hole in the
+                 underlying polygon.
+
+        - By definition, the first and last vertices of a polygon is identical.  Some
+            geospatial software will throw an error if your first and last points don't
+            match exactly.  Others will automatically close the polygon without complaining.
+
 
     - Buffer
 
+        - A 'buffer' creates a polygon around another polygon at a specified distance.
+
+        - Buffers are used for proximity analysis.  For example, establishing a safety zone
+            around a dangerous area.
+
+
     - Dissolve
+
+        - A 'dissolve' operation creates a single polygon out of adjacent polygons.  
+
+        - A common use is to merge two adjacent properties in a tax database that has been
+            purchased by a single owner.
+
 
     - Generalize
 
+        - Objects that have more points than necessary for the geospatial model can be 
+            'generalized' to reduce the number of points used to represent the shape.
+
+        - Since computer screens have a resolution of 72 dpi (dots per inch), we can reduce
+            the image down to this resolution, and it will be visually equivalent to the user.
+
+
     - Intersection
+
+        - An 'intersection' operation is used to see if one part of a feature intersects
+            with one or more features.  This operation is used for spatial queries in 
+            proximity analysis.  
+
+        - A 'merge' operation combines 2 or more non-overlapping shapes into a single
+            multi-shape object.
+
+        - A fundamental geospatial operation is checking to see whether a point is inside
+            a polygon.  This operation is the building block of many different types of
+            spatial queries.
+
+          The most common and efficient algorithm to detect whether a point is inside a 
+            polygon is called the 'ray casting algorithm'.  
+
+            First, a test is performed to see if the point is on the boundary.  
+
+            Next, it draws a line from the point in a single direction.  The program counts the
+              number of times the line crosses the boundary until it reaches the bounding box
+              limits.  If the number is odd, the point is inside.  If the number is even, the
+              point is outside.
+
 
     - Union
 
+        - The 'union' operation is useful when you want to combine 2 or more
+            overlapping polygons in a single shape.  It is similar to dissolve, 
+            but in this case the polygons are overlapping instead of adjacent.
+
+        - Usually, this operation is used to clean up automatically generated feature
+            datasets from remote sensing operations.
+
+
     - Join
+
+        - A SQL join combines 2 or more tables.  In GIS, you can also have spatial joins
+            that lets you combine attributes the same way, but based on proximity of
+            features.
+
+        - For instance, we could add the county name that each city resides in with a 
+            spatial join from the county name to each city's attribute row.
+
+            
 
 - Raster Data Concepts
 
