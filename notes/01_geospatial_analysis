@@ -352,4 +352,16 @@ CHAPTER 1 - LEARNING GEOSPATIAL ANALYSIS
 
 - Creating the Simplest Possible GIS
 
-    - We will create a simple GIS in pure Python that shows 3 cities in Colorado.
+    - We will create a simple GIS in pure Python that shows 3 cities in Colorado.  The data
+        model will be structured so that we can perform basic queries.
+
+
+    - First, we'll need the 'turtle' module, which provides a very simple graphics engine
+        based on Tkinter.  It should already be installed, but we can check:
+
+        # Run the turtle demo script
+        $ python -m turtle
+
+
+    - The code has 2 different sections, the data model and the renderer.  For the data model,
+        we will use simple lists.  
