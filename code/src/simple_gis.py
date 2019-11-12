@@ -9,13 +9,15 @@ POINTS = 1
 POP = 2
 
 # Create the state layer
-state = ["COLORADO", [[-109, 37], [-109, 41], [-102, 41], [-102, 37]], 5187582]
+STATE = ["COLORADO", [[-109, 37], [-109, 41], [-102, 41], [-102, 37]], 5187582]
 
 # city = [name, [point], population]
-cities = []
-cities.append(["DENVER", [-104.98, 39.74], 634265])
-cities.append(["BOULDER", [-105.27, 40.02], 98889])
-cities.append(["DURANGO", [-107.88, 37.28], 17069])
+CITIES = []
+
+def populate_cities():
+    CITIES.append(["DENVER", [-104.98, 39.74], 634265])
+    CITIES.append(["BOULDER", [-105.27, 40.02], 98889])
+    CITIES.append(["DURANGO", [-107.88, 37.28], 17069])
 
 # MAP GRAPHICS RENDERING
 map_width = 800
@@ -27,7 +29,7 @@ minx = 180
 maxx = -180
 miny = 90
 maxy = -90
-for x, y in state[POINTS]:
+for x, y in STATE[POINTS]:
     if x < minx:
         minx = x
     elif x > maxx:
@@ -59,16 +61,20 @@ def convert(point):
     y = y - (map_height/2)
     return [x, y]
 
+def setup_data_model():
+    populate_cities()
+
 # Add a title to the window
-wn = t.Screen()
-wn.title("Simple GIS")
+def add_title():
+    wn = t.Screen()
+    wn.title("Simple GIS")
 
 # Draw the state
 def draw_state():
     t.up()
     first_pixel = None
 
-    for point in state[POINTS]:
+    for point in STATE[POINTS]:
         pixel = convert(point)
         if not first_pixel:
             first_pixel = pixel
@@ -81,13 +87,11 @@ def draw_state():
     # Label the state
     t.up()
     t.goto([0, 0])
-    t.write(state[NAME], align="center", font=("Arial", 16, "bold"))
-
-draw_state()
+    t.write(STATE[NAME], align="center", font=("Arial", 16, "bold"))
 
 # Draw the cities
 def draw_cities():
-    for city in cities:
+    for city in CITIES:
         pixel = convert(city[POINTS])
         t.up()
         t.goto(pixel)
@@ -97,28 +101,36 @@ def draw_cities():
         t.write(city[NAME] + ", Pop.: " + str(city[POP]), align="left")
         t.up()
 
-draw_cities()
-
 # Perform an attribute query
 # Question: Which city has the largest population?
 # Write the result but make sure it's under the map
 def show_biggest_city():
-    biggest_city = max(cities, key=lambda city: city[POP])
+    biggest_city = max(CITIES, key=lambda city: city[POP])
     t.goto(0, -1*((map_height/2)+20))
     t.write("The highest-populated city is: " + biggest_city[NAME])
-
-show_biggest_city()
 
 # Perform a spatial query
 # Question: Which is the western most city?
 # Write the result but make sure it's under the other question
 def show_westernmost_city():
-    western_city = min(cities, key=lambda city: city[POINTS])
+    western_city = min(CITIES, key=lambda city: city[POINTS])
     t.goto(0, -1*((map_height/2)+40))
     t.write("The western-most city is: " + western_city[NAME])
 
-show_westernmost_city()
-
 # Hide our map pen
-t.pen(shown=False)
-t.done()
+def hide_map_pen():
+    t.pen(shown=False)
+    t.done()
+
+def render_map():
+    add_title()
+    draw_state()
+    draw_cities()
+    show_biggest_city()
+    show_westernmost_city()
+    hide_map_pen()
+
+
+# Main Execution
+setup_data_model()
+render_map()
