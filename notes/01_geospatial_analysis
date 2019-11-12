@@ -364,4 +364,4 @@ CHAPTER 1 - LEARNING GEOSPATIAL ANALYSIS
 
 
     - The code has 2 different sections, the data model and the renderer.  For the data model,
-        we will use simple lists.  
+        we will use simple lists.  The renderer uses turtle.
