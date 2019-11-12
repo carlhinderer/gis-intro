@@ -1,0 +1,53 @@
+---------------------------------------------------------
+CHAPTER 2 - LEARNING GEOSPATIAL DATA
+---------------------------------------------------------
+
+- Common Data Formats
+
+- Understanding Data Structures
+
+- Understanding Spatial Indexing
+
+    - Quadtree Index Algorithm
+
+    - R-tree Index Algorithm
+
+    - Grids
+
+- Overviews
+
+- Metadata
+
+- File Structure
+
+- Widely Used Vector Data Types
+
+    - Shapefiles
+    
+    - CAD Files
+
+    - Tag-Based and Markup-Based Formats
+
+    - GeoJSON
+
+    - GeoPackage
+
+- Widely Used Raster Data Types
+
+    - TIFF Files
+
+    - JPEG, GIF, BMP, and PNG
+
+    - Compressed Formats
+
+    - ASCII Grids
+
+    - World Files
+
+- Point Cloud Data
+
+    - LIDAR
+
+- Web Services
+
+- Geospatial Databases
