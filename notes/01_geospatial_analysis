@@ -299,19 +299,57 @@ CHAPTER 1 - LEARNING GEOSPATIAL ANALYSIS
         - For instance, we could add the county name that each city resides in with a 
             spatial join from the county name to each city's attribute row.
 
-            
+
 
 - Raster Data Concepts
 
     - Band Math
 
+        - 'Band math' is multidimensional array mathematics.
+
+
     - Change Detection
+
+        - 'Change detection' is the process of taking 2 images of the same location at different
+            times and highlighting those changes.  A change could be a new building or coastal
+            erosion.
+
 
     - Histogram
 
+        - A 'histogram' is the statistical distribution of values in a dataset.  The horizontal
+            axis represents a unique value, and the vertical axis represents the frequency
+            of the value.
+
+        - A histogram is a key operation in most raster processing.  It can be used for everything
+            from enhancing contrast in an image to serving as a basis for object classification
+            and image comparison.
+
+
     - Feature Extraction
 
-    - Supervised and Unsupervised Learning
+        - 'Feature extraction' is the manual or automatic digitization of features in an image to
+            lines, points, or polygons.  This process serves as the basis for vectorization of 
+            images in which a raster is converted to a vector dataset.
+
+        - A common example is extracting a coastline from a satellite image and saving it as a
+            vector dataset.  If this extraction is performed over several years, you could monitor
+            the erosion or other changes along this coastline.
+
+
+    - Supervised and Unsupervised Classification
+
+        - Objects on the Earth reflect different wavelengths of light depending on the 
+            materials they are made of.  In remote sensing, analysts collect wavelength
+            signatures for specific types of land cover (ie concrete) and build a
+            library for a specific area.  Then, they can predict the materials of other
+            points.
+
+        - In unsupervised classification, a computer groups pixels with similar reflectance
+            values in an image without any other reference information besides the 
+            histogram.
 
 
 - Creating the Simplest Possible GIS
+
+    - We will create a simple GIS in pure Python that shows 3 cities in Colorado.
