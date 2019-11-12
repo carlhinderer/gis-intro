@@ -11,15 +11,10 @@ POP = 2
 # Create the state layer
 state = ["COLORADO", [[-109, 37], [-109, 41], [-102, 41], [-102, 37]], 5187582]
 
-# Cities layer list
 # city = [name, [point], population]
 cities = []
-
-# Add Denver
 cities.append(["DENVER", [-104.98, 39.74], 634265])
-# Add Boulder
 cities.append(["BOULDER", [-105.27, 40.02], 98889])
-# Add Durango
 cities.append(["DURANGO", [-107.88, 37.28], 17069])
 
 # MAP GRAPHICS RENDERING
@@ -69,46 +64,60 @@ wn = t.Screen()
 wn.title("Simple GIS")
 
 # Draw the state
-t.up()
-first_pixel = None
+def draw_state():
+    t.up()
+    first_pixel = None
 
-for point in state[POINTS]:
-    pixel = convert(point)
-    if not first_pixel:
-        first_pixel = pixel
-    t.goto(pixel)
-    t.down()
-# Go back to the first point
-t.goto(first_pixel)
-# Label the state
-t.up()
-t.goto([0, 0])
-t.write(state[NAME], align="center", font=("Arial", 16, "bold"))
+    for point in state[POINTS]:
+        pixel = convert(point)
+        if not first_pixel:
+            first_pixel = pixel
+        t.goto(pixel)
+        t.down()
+
+    # Go back to the first point
+    t.goto(first_pixel)
+
+    # Label the state
+    t.up()
+    t.goto([0, 0])
+    t.write(state[NAME], align="center", font=("Arial", 16, "bold"))
+
+draw_state()
 
 # Draw the cities
-for city in cities:
-    pixel = convert(city[POINTS])
-    t.up()
-    t.goto(pixel)
-    # Place a point for the city
-    t.dot(10)
-    # Label the city
-    t.write(city[NAME] + ", Pop.: " + str(city[POP]), align="left")
-    t.up()
+def draw_cities():
+    for city in cities:
+        pixel = convert(city[POINTS])
+        t.up()
+        t.goto(pixel)
+        # Place a point for the city
+        t.dot(10)
+        # Label the city
+        t.write(city[NAME] + ", Pop.: " + str(city[POP]), align="left")
+        t.up()
+
+draw_cities()
 
 # Perform an attribute query
 # Question: Which city has the largest population?
 # Write the result but make sure it's under the map
-biggest_city = max(cities, key=lambda city: city[POP])
-t.goto(0, -1*((map_height/2)+20))
-t.write("The highest-populated city is: " + biggest_city[NAME])
+def show_biggest_city():
+    biggest_city = max(cities, key=lambda city: city[POP])
+    t.goto(0, -1*((map_height/2)+20))
+    t.write("The highest-populated city is: " + biggest_city[NAME])
+
+show_biggest_city()
 
 # Perform a spatial query
 # Question: Which is the western most city?
 # Write the result but make sure it's under the other question
-western_city = min(cities, key=lambda city: city[POINTS])
-t.goto(0, -1*((map_height/2)+40))
-t.write("The western-most city is: " + western_city[NAME])
+def show_westernmost_city():
+    western_city = min(cities, key=lambda city: city[POINTS])
+    t.goto(0, -1*((map_height/2)+40))
+    t.write("The western-most city is: " + western_city[NAME])
+
+show_westernmost_city()
 
 # Hide our map pen
 t.pen(shown=False)
