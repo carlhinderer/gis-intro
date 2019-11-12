@@ -26,23 +26,141 @@ CHAPTER 1 - LEARNING GEOSPATIAL ANALYSIS
 
 - Remote Sensing
 
+    - 'Remote sensing' is collecting information about an object without making physical
+        contact with the object.  It also includes the processing of the collected data.
+
+    - 1858 - The first aerial photograph is taken from a hot air balloon in Paris.
+
+    - 1950s - American U-2 spy plane takes pictures from 75,000 feet
+
+    - 1957 - USSR launches Sputnik 1
+
+    - Early 1960s - USA's CORONA project takes first pictures from space
+
+    - 1972 - NASA launches 'Landsat 1' to provide satellite photography to civilians
+
+    - After 1972 - NOAA took over Lansat program, Landsat 8 was launched in 2013
+
+
+
 - Elevation Data
+
+    - Whereas remote sensing provides a 2D picture of the Earth, a 'DEM (Digital Elevation Model)' 
+        is a 3D model of the planet's terrain.
+
+    - 1986 - French space agency launches a satellite with stereoscopic radar and creates the
+               first usable DEM.
+
+    - 2000 - Space Shuttle Endeavour collected elevation data for 80% of Earth using a special
+               radar antenna configuration.
+
+    - 2009 - US and Japanese 'ASTER' project captures 99%, but has some data quality problems
+
+    - 2014 - 2 German satellites work together to produce a global DEM called 'WorldDEM'
+
+
 
 - CAD
 
+    - Although Computer-Aided Drafting doesn't relate directly to geospatial analysis, their
+        histories are intertwined.
+
+    - Over time, the use cases for CAD and geospatial tools has started to overlap.
+
+
+
 - The Importance of Geospatial Analysis
+
+    - Geospatial analysis helps people make better decisions.  Tools have traditionally
+        only been available only to governments and well-funded researchers, but 
+        today anyone can access them.
+
+    - Google Earth allows users to create 'KML (Keyhole Markup Language)' XML files
+        to load and style data to the globe.
+
+    - The 'OpenStreetMap' project is a crowd-sourced, worldwide, geographic base map
+        that has most layers commonly found in a GIS.
+
+
 
 - GIS Concepts
 
     - Thematic Maps
 
+        - A 'thematic map' portrays a specific theme.  They are extremely useful and 
+            influential in our society.
+
+        - Thematic maps are models of reality, which means they depend on how the analyst
+            analyzes and summarizes the data.  Two different analysts will often create
+            very different maps.  We should not treat them as scientific evidence.
+
+        - 'Spatial databases' aka 'geodatabases' are usually specialized software designed
+            to extend a RDBMS.  Geometries can be queried using SQL.
+
+
     - Spatial Indexing
+
+        - 'Spatial indexing' organizes geospatial vector data for faster retrieval.  It is
+            a way of prefiltering the data for common queries or rendering.
+
 
     - Metadata
 
+        - 'Geospatial metadata' is data about geospatial datasets that provides tracability for
+            the source and history of a dataset.  It also provides long-term preservation of
+            data by documenting the asset over time.
+
+        - There are several standards for geospatial metadata, including:
+
+            - 'ISO 19115-1' = add hundreds of fields to describe geospatial dataset
+            - 'ISO 19115-2' = extensions for geospatial imagery and gridded data
+            - 'ISO 19115-3' = describes procedure to generate an XML schema
+
+        - The primary use of metadata is for cateloging datasets.  Modern metadata can be 
+            ingested by geographic search engines, so it can be discovered automatically.
+            It also lists points of contact for the dataset if you have any questions.
+
+        - The 'OGC (Open Geospatial Consortium)' created the 'CSW (Catalog Service for the Web)'
+            to manage metadata.  The 'pycsw' Python library implements the CSW standard.
+
+
     - Map Projections
 
+        - If you take any 3D object and flatten it on a plane, the object is distorted.  In 
+            geospatial analysis, you can manipulate this distortion to preservce common
+            properties, such as area, scale, bearing, distance, or shape.  
+
+        - Projections are usually represented as a collection of fields in either XML or
+           the 'WKT (Well-Known Text)' format.
+
+        - The 'IOGP (International Association of Oil and Gas Producers)' maintains a registry
+           of the most well-known projections.  The entries in the registry are known as
+           'EPSG codes'.  
+
+        - As recently as 15 years ago, there was no consistency in the projections that people
+            used.  This meant that datasets became useless if projection information wasn't 
+            included.  Also, layering maps on top of each other required re-projecting.  Newer
+            projects such as 'OpenStreetMap' have consolidated much of the world in common
+            projections.
+
+        - 'Geodetic datums' are closely related to maps.  They are models of the Earth's surface
+            used to match features of the Earth to a coordinate system.  'WGS 84' is a common
+            datum, and is used by GPS.
+
+
     - Rendering
+
+        - Geographic data includes points, lines, an polygons numerically as one or more points.
+
+        - For remote sensing data, the challenge is typically the file size.  Images can be
+            compressed using lossless or lossy compression algorithms.
+
+        - Rendering an image on the screen can be computationally intensive.  Most remote sensing
+            file formats allow for the storing of multiple lower-resolution versions of the
+            images, called 'overviews' or 'pyramids'.  When we zoom out, a lower-resolution
+            version of the image is displayed quickly and seemlessly.
+
+
 
 - Remote Sensing Concepts
 
