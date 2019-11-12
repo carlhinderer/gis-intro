@@ -14,55 +14,73 @@ STATE = ["COLORADO", [[-109, 37], [-109, 41], [-102, 41], [-102, 37]], 5187582]
 # city = [name, [point], population]
 CITIES = []
 
+# Map Graphics Rendering
+MAP_WIDTH = 800
+MAP_HEIGHT = 500
+
+# State Bounding Box
+MINX = 180
+MAXX = -180
+MINY = 90
+MAXY = -90
+
+# Earth Distances
+DIST_X = 260
+DIST_Y = 180
+
+# Scaling Ratios
+X_RATIO = 3
+Y_RATIO = 2
+
 def populate_cities():
     CITIES.append(["DENVER", [-104.98, 39.74], 634265])
     CITIES.append(["BOULDER", [-105.27, 40.02], 98889])
     CITIES.append(["DURANGO", [-107.88, 37.28], 17069])
 
-# MAP GRAPHICS RENDERING
-map_width = 800
-map_height = 500
-
-# State Bounding Box
-# Use Python min/max function to get bounding box
-minx = 180
-maxx = -180
-miny = 90
-maxy = -90
-for x, y in STATE[POINTS]:
-    if x < minx:
-        minx = x
-    elif x > maxx:
-        maxx = x
-    if y < miny:
-        miny = y
-    elif y > maxy:
-        maxy = y
+def get_bounding_box():
+    global MINX, MAXX, MINY, MAXY
+    for x, y in STATE[POINTS]:
+        if x < MINX:
+            MINX = x
+        elif x > MAXX:
+            MAXX = x
+        if y < MINY:
+            MINY = y
+        elif y > MAXY:
+            MAXY = y
 
 # Get earth distance on each axis
-dist_x = maxx - minx
-dist_y = maxy - miny
+def get_earth_distance():
+    global DIST_X, DIST_Y
+    DIST_X = MAXX - MINX
+    DIST_Y = MAXY - MINY
 
 # Scaling ratio each axis
 # to map points from world to screen
-x_ratio = map_width / dist_x
-y_ratio = map_height / dist_y
-
+def get_scaling_ratio():
+    global X_RATIO, Y_RATIO
+    X_RATIO = MAP_WIDTH / DIST_X
+    Y_RATIO = MAP_HEIGHT / DIST_Y
 
 def convert(point):
     """Convert lat/lon to screen coordinates"""
     lon = point[0]
     lat = point[1]
-    x = map_width - ((maxx - lon) * x_ratio)
-    y = map_height - ((maxy - lat) * y_ratio)
+    x = MAP_WIDTH - ((MAXX - lon) * X_RATIO)
+    y = MAP_HEIGHT - ((MAXY - lat) * Y_RATIO)
+
     # Python turtle graphics start in the middle of the screen
     # so we must offset the points so they are centered
-    x = x - (map_width/2)
-    y = y - (map_height/2)
+    x = x - (MAP_WIDTH/2)
+    y = y - (MAP_HEIGHT/2)
+
     return [x, y]
 
 def setup_data_model():
     populate_cities()
+    get_bounding_box()
+    get_earth_distance()
+    get_scaling_ratio()
 
 # Add a title to the window
 def add_title():
@@ -106,7 +124,7 @@ def draw_cities():
 # Write the result but make sure it's under the map
 def show_biggest_city():
     biggest_city = max(CITIES, key=lambda city: city[POP])
-    t.goto(0, -1*((map_height/2)+20))
+    t.goto(0, -1*((MAP_HEIGHT/2)+20))
     t.write("The highest-populated city is: " + biggest_city[NAME])
 
 # Perform a spatial query
@@ -114,7 +132,7 @@ def show_biggest_city():
 # Write the result but make sure it's under the other question
 def show_westernmost_city():
     western_city = min(CITIES, key=lambda city: city[POINTS])
-    t.goto(0, -1*((map_height/2)+40))
+    t.goto(0, -1*((MAP_HEIGHT/2)+40))
     t.write("The western-most city is: " + western_city[NAME])
 
 # Hide our map pen
