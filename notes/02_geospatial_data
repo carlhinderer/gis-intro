@@ -392,17 +392,95 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
     - The 'GeoPackage' format is defined by OGC as a type of geodatabase which uses SQLite.  It's an 
         attempt to get away from issues with proprietary or limited data formats.
 
-        
+
 
 - Widely Used Raster Data Types
 
+    - Raster data consists of rows and columns of cells or pixels.  Raster data is thought of as
+        image data, but can also be stored as 'ASCII' or 'BLOB'.
+
+
+    - Regular image data expresses resolution as dpi or the total number of pixels.  Geospatial data is 
+        usually defined by the ground distance each cell represents.  
+
+
+    - Raster datasets may contain multiple bands, meaning that different wavelengths of light can be
+        collected at the same time over the same area.  There are often 3-7 bands, but there are sometimes
+        others.  Bands can be displayed separately or combined into a single band.
+
+
+    - The field of scientific computing commonly uses raster data.  It shares many elements with geospatial
+        remote sensing, but add some twists.  Oceanography and meterology are the most common applications
+        of this data.  Complex raster formats such as 'NetCDF', 'GRIB', and 'HDF5' are used.
+
+
+    - The open source 'raster' library, known as GDAL (Geospatial Data Abstraction Library), supports 130+
+        raster formats.  It includes the vector 'OGR' library mentioned previously.
+
+
+
 - TIFF Files
+
+    - The TIFF (Tagged Image File Format) is the most common geospatial raster format.  The TIFF format's 
+        flexible tagging system allows it to store any type of data in a single file.  They can contain
+        overview images, multiple bands, integer elevation data, metadata, internal compression, and a variety
+        of other things.
+
+
+    - Since there is no standardization, TIFF files tend to have portability problems.  The 'GeoTIFF' extension
+        was created to define a common geospatial standard.  Geospatial rasters mith have '.tiff', '.tif', or
+        '.gtif' file extensions.
+
+
 
 - JPEG, GIF, BMP, and PNG
 
+    - JPEG, GIF, and PNG are image files used in web applications.
+
+      BMP images are commonly used for desktop applications.
+
+
+
 - Compressed Formats
 
+    - Since geospatial rasters tend to be very large, they are often stored using advanced compression techniques.
+
+
+    - For JPEGs, the 'JPEG 2000' format is a common compression standard.  The 'MrSID' and 'ECW' proprietary
+        wavelet compression formats are also seen in geospatial software.
+
+
+    - The TIFF supports algorithms including LZW (Lempel-Ziv-Welch).  Note that compressed information is suitable
+        as part of a basemap, but should not be used for remote-sensing processing, since it is lossy.
+
+
+
 - ASCII Grids
+
+    - Another means of storing raster data, often elevation data, is in ASCII Grid files.  This file format was
+        created by Esri, but has become an unofficial open standard.
+
+
+    - Here is an example:
+
+        <NCOLS xxx> 
+        <NROWS xxx> 
+        <XLLCENTER xxx | XLLCORNER xxx> 
+        <YLLCENTER xxx | YLLCORNER xxx> 
+        <CELLSIZE xxx> 
+        {NODATA_VALUE xxx} 
+        row 1 
+        row 2 
+        . 
+        . 
+        . 
+        row n 
+
+
+    - Although it's not the most efficient way to store data, ASCII Grid files are very popular because they
+        don't require any special libraries to read or write.
+
+
 
 - World Files
 
