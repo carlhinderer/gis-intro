@@ -4,15 +4,112 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
 
 - Common Data Formats
 
-- Understanding Data Structures
+    - Until 2004, geospatial data was difficult to acquire and desktop processing power was limited.
+        Preprocessing data was a requirement for any geospatial project.
+
+      In 2004, Google released Google Maps, which upended the industry.  Other major players 
+        released major advances this year also, including Microsoft (TerraServer), the OGC
+        (Web Map Service), and Esri (ArcGIS 9).  These innovations were driven by Google Maps'
+        map-tiling model, called 'slippy maps', which allowed for smooth, global, scrolling maps.
+
+
+    - People had used map servers on the internet before Google Maps (MapQuest most notably), but
+        they offered small amounts of data at a time over limited areas.  AJAX was the advance
+        that made Google Maps so responsive and scalable.
+
+      Also, Google Maps' JavaScript API made it possible for programmers to combine maps with data from 
+        other sources to create mashups.
+
+
+    - 'OpenLayers' is a standard for distributed geospatial layers.  It has now gone beyond Google's
+        original API to offer additional features.
+
+      'OpenStreetMap' is an open source answer to the tiled map services consumed by systems such as
+        OpenLayers.  It has global, street-level vector data and other spacial features that have been
+        collected from available governement data and many volunteers.  The data is maintained in a 
+        Wiki-like fashion.
+
+
+    - For many years, geospatial data was very difficult to obtain, and tools were used by governments
+        or very large organizations only.  Web mapping has changed everything in the industry, and now
+        anyone can build geospatial tools.
+
+
+    - Another benefit of the web era is that data providers began distributing data in a common projection
+        called 'Mercator'.  It's the same standard nautical navigation projection that was used 400 years ago.
+        The Google variation is called 'Google Mercator'.  
+
+      Mercator distorts the size of objects according to their distance from the equator.  It does preserve
+        angles, which allows for plotting a course.
+
+      Google also standardized on the 'WGS 84' datum, which defines a specific spherical model of the Earth
+        called a 'geoid'.  This model defines the normal sea level.  Note that GPS also uses this model, so
+        Google Maps is easily compatible with raw GIS data.
+
+
+    - There are 2 primary categories under which most geospatial datasets can be grouped.
+
+        1. Vector Data = Any format that minimally represents geolocation data using points, lines, or
+                           polygons
+
+        2. Raster Data = Any format that stores data in a grid of rows and columns.  Raster data includes all
+                           image formats.
+
+
+
+- Common Traits of Data Structures
+
+    - There are 2 common factors in all geospatial data:
+
+        1. Geolocation Data 
+
+        2. Subject Information
+
+
 
 - Understanding Spatial Indexing
 
+    - Geospatial datasets are often very large files, easily reaching hundreds of MBs or even several
+        GBs.  This can cause geospatial software to be quite slow in trying to do analysis.  Spatial indexes
+        are created to mitigate this problem.
+
+      The 'Quadtree Index' and 'R-tree Index' are the 2 most common spatial indexing algorithms.
+
+
     - Quadtree Index Algorithm
+
+        A Quadtree is a tree in which each tree contains 4 children.  Each square is subdivided into 4 smaller
+          squares.  When a node contains a specified number of features and more features are added, the node
+          splits.
+
+        Quadtree indexes are most commonly found in file-based index formats.
+
 
     - R-tree Index Algorithm
 
+        R-tree indexes are more sophisticated than Quadtrees.  They are designed to handle 3D data and are
+          optimized to store the index in a way that is compatible with the way databases use memory and
+          disk space.
+
+        Overlapping rectangles create bounding boxes for data. 
+
+
     - Grids
+
+        Spatial indexes also often employ the concept of an integer grid.  Geospatial coordinates are
+          usually floating point number with 2-16 decimal places.  However, integer comparisons are much
+          cheaper than floating point comparisons.
+
+        Most spatial indexing algorithms map floating-point coordinates to an integer grid to speed up 
+          comparisons.
+
+        Grid sizes can be as small as 256 x 256 for smaller file formats or can be as large as 
+          3 million x 3 million in large geospatial databases.
+
+        The technique used is very similar to the rendering technique we used in 'SimpleGIS' to convert
+          latitude and longitude to screen pixels.
+
+
 
 - Overviews
 
