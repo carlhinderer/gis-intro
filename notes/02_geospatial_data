@@ -140,6 +140,7 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
         INSPIRE (Infrastructure for Spatial Information in the European Community)
 
 
+
 - File Structure
 
     - These elements can be stored in a variety of ways in a single file, multiple files, or databases, depending
@@ -281,11 +282,117 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
 
 - CAD Files
 
+    - CAD software is used for everything engineering-related, from bicycles and cars to parks and sewer systems.
+        Merging geospatial data with CAD data is sometimes done in civil engineering, and it can be tricky.
+        It's usually better to ask the CAD team if they can export to shapefile first.
+
+
+    - There are 2 primary CAD formats:
+
+        DXF (Drawing Exchange Format)
+        DWG (AutoCAD's Drawing Format)
+
+
+    - CAD software has advanced features not usually included in geospatial software:
+
+        Curves
+        Surfaces
+        3D Solids
+        Text Styling
+        Viewport Configuration
+
+
+
 - Tag-Based and Markup-Based Formats
+
+    - Tag-Based Format 
+
+        WKT (Well-Known Text) = used for projection information and exchange formats
+
+        Here is an example:
+
+          GEOGCS["WGS 84", 
+              DATUM["WGS_1984", 
+                  SPHEROID["WGS 84",6378137,298.257223563, 
+                      AUTHORITY["EPSG","7030"]], 
+                  AUTHORITY["EPSG","6326"]], 
+              PRIMEM["Greenwich",0, 
+                  AUTHORITY["EPSG","8901"]], 
+              UNIT["degree",0.01745329251994328, 
+                  AUTHORITY["EPSG","9122"]], 
+              AUTHORITY["EPSG","4326"]]
+
+
+    - XML Formats
+
+        KML (Keyhole Markup Language)
+        OSM (OpenStreetMap)
+        GPX (Garmin's exchange format)
+
+        
+    - GML (OGC's Geographic Markup Language) is the basis for OGC's WFS (Web Feature Service), which is a standard
+        for web applications.
+
+      However, GML has been largely superseded by KML and the GeoJSON format.
+
+
+    - This is a KML sample:
+
+        <?xml version="1.0" encoding="utf-8"?> 
+        <kml xmlns="http://www.opengis.net/kml/2.2"> 
+          <Placemark> 
+            <name>Mockingbird Cafe</name> 
+            <description>Coffee Shop</description> 
+            <Point> 
+              <coordinates>-89.329160,30.310964</coordinates> 
+            </Point> 
+          </Placemark> 
+        </kml> 
+
+
+    - SVG (Scalable Vector Graphics) is a widely supported XML format for computer graphics.  It is supported by 
+        most browsers and is often used for geospatial rendering.  However, it was not designed as a geographic
+        format.
+
+
 
 - GeoJSON
 
+    - GeoJSON is a relatively new text format based on JSON.  It can be found in all major geographic
+        software systems and websites.  This is because it's easy to feed the JSON directly into 
+        JavaScript code.
+
+
+    - Here is an example:
+
+        { "type": "GeometryCollection", 
+          "geometries": [ 
+            { "type": "Point", 
+              "coordinates": [-89.33, 30.0] 
+            }, 
+            { "type": "LineString", 
+              "coordinates": [ [-89.33, 30.30], [-89.36, 30.28] ] 
+            } 
+          {"type": "Polygon", 
+            "coordinates": [[ 
+              [-104.05, 48.99], 
+              [-97.22,  48.98] 
+            } 
+          ] 
+        }
+
+
+    - Note that this example is both valid JavaScript and valid Python, which makes it easy to work
+        with on both sides.
+
+
+
 - GeoPackage
+
+    - The 'GeoPackage' format is defined by OGC as a type of geodatabase which uses SQLite.  It's an 
+        attempt to get away from issues with proprietary or limited data formats.
+
+        
 
 - Widely Used Raster Data Types
 
