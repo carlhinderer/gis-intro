@@ -113,33 +113,103 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
 
 - Overviews
 
+    - Overview data is most commonly found in raster formats.  'Overviews' are resampled and lower-resolution
+        versions of raster datasets that provide thumbnail views or simply faster-loading image views at
+        different map scales.  They are aka 'pyramids', and the process of creating them is known as
+        'pyramiding an image'.
+
+      These overviews are usually preprocessed and stored with the full resolution data either embedded with
+        the file or in a separate file.
+
+
+    - The trade off is that the file size will become larger, but image viewing is sped up.  Vector data also
+        has the concept of overviews, but is less important since vector data is easily scalable.
+
+
+
 - Metadata
+
+    - Metadata is any data that describes the associated dataset.  Common metadata includes the footprint of 
+        the dataset, the projection used, and information describing how the dataset was created.
+
+
+    - There are several common metadata formats, including:
+
+        FDGC (Federal Geographic Data Committee)
+        CSDGM (Content Standard for Digital Geospatial Metadata)
+        INSPIRE (Infrastructure for Spatial Information in the European Community)
+
 
 - File Structure
 
+    - These elements can be stored in a variety of ways in a single file, multiple files, or databases, depending
+        on the format.  It can be stored in a variety of formats, including embedded binary headers, XML, CSV,
+        database tables, separate text, or binary files.  
+
+
+    - Human-readable files like XML or CSV are easily inspected.  For binary files, the Python 'struct' module
+        lets you read and write binary data as strings.
+
+      The 'struct' module uses the '>' (big endian) and '<' (little endian) symbols to specify byte order.
+
+
+        # Here we open an Esri shapefile and get basic information
+        # The bounding box is stored in 4 bytes starting at byte 36
+        >>> import struct
+
+        >>> f = open('hancock.shp', 'rb')
+        >>> f.seek(36)
+
+        # Get min longitude, min latitude, max longitude, min latitude
+        >>> struct.unpack("<d", f.read(8)) 
+        (-89.6904544701547,) 
+        >>> struct.unpack("<d", f.read(8)) 
+        (30.173943486533133,) 
+        >>> struct.unpack("<d", f.read(8)) 
+        (-89.32227546981174,) 
+        >>> struct.unpack("<d", f.read(8)) 
+        (30.6483914869749,)
+
+        # Get all 4 at once instead
+        >>> struct.unpack("<dddd", f.read(32))
+
+
+
 - Widely Used Vector Data Types
 
-    - Shapefiles
-    
-    - CAD Files
+    - Vector data is by far the most common geospatial format because it is the most efficient way to store spatial 
+        information.  It requires much fewer resources to store and process than raster data.
 
-    - Tag-Based and Markup-Based Formats
+      The OGC has 16+ formats for vector data.  Vector data stores only geographic primitives, including points, 
+        lines, and polygons.  Only the points are stored for each type of shape.
 
-    - GeoJSON
 
-    - GeoPackage
+    - Geospatial vector data is similar to the concept of vector computer graphic.  Vector data contains Earth-based
+        coordinates, while vector data typically stores screen coordinates.  Geospatial data is also usually
+        linked to other information about the object, such as timestamps.  Also, geospatial systems have a much 
+        similar geometry than graphics systems.
+
+
+
+- CAD Files
+
+- Tag-Based and Markup-Based Formats
+
+- GeoJSON
+
+- GeoPackage
 
 - Widely Used Raster Data Types
 
-    - TIFF Files
+- TIFF Files
 
-    - JPEG, GIF, BMP, and PNG
+- JPEG, GIF, BMP, and PNG
 
-    - Compressed Formats
+- Compressed Formats
 
-    - ASCII Grids
+- ASCII Grids
 
-    - World Files
+- World Files
 
 - Point Cloud Data
 
