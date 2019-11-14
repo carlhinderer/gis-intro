@@ -191,6 +191,94 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
 
 
 
+- Shapefiles
+
+    - The Esri 'shapefile' is the most ubiquitious geospatial format.  Esri released it as an open format in 1998.
+        It was originally designed for its lower-end package (ArcInfo) to complement its higher-end package (ARC/INFO).
+
+
+    - The format is so common that many analysts get by just learning this format and ignoring all the other ones.
+        Most other formats can be converted back and forth to shapefiles.  Virtually any geospatial software supports
+        the format.
+
+
+    - Python modules that can be used to work with shapefiles include 'osgeo', 'shapely', and 'fiona'.
+
+
+    - Confusingly, a shapefile actually consists of multiple (3-15) separate files:
+
+        .shp
+        This is the shapefile. It contains the geometry.
+        It is a required file. Some software that needs only geometry will accept the .shp files without the .shx or 
+          .dbf file.
+
+        .shx
+        This is the shape index file. It is a fixed-sized record index referencing geometry for faster access.
+        It is a required file. This file is meaningless without the .shp file.
+
+        .dbf
+        This is the database file. It contains the geometry attributes.
+        It is a required file. Some software will access this format without the .shp file present as the specification 
+          predates shapefiles. It's based on the very old FoxPro and dBase formats. An open specification exists for it 
+          called Xbase. The .dbf files can be opened by most types of spreadsheet software.
+
+        .sbn
+        This is the spatial bin file, that is, the shapefile spatial index.
+        It contains bounding boxes of features mapped to a 256 x 256 integer grid. It is very common for this file to 
+          accompany large shapefile datasets.
+
+        .sbx
+        A fixed-sized record index for the .sbn file.
+        A traditional ordered record index of a spatial index. Frequently seen.
+
+        .prj
+        This contains map projection information that's stored in a well-known text format.
+        A very common and required file for on-the-fly projection by the GIS software. This same format can also accompany 
+          raster data.
+
+        .fbn
+        A spatial index of read-only features.
+        Very rarely seen.
+
+        .fbx
+        A fixed-sized record index of the .fbn spatial index.
+        Very rarely seen.
+
+        .ixs
+        A geocoding index.
+        Common in geocoding applications, including driving-direction type applications.
+
+        .mxs
+        Another type of geocoding index.
+        Less common than the .ixs format.
+
+        .ain
+        Attribute index.
+        Mostly legacy format, and rarely used in modern software.
+
+        .aih
+        Attribute index.
+        Accompanies the .ain files.
+
+        .qix
+        Quadtree index.
+        A spatial index format created by the open source community because the Esri .sbn and .sbx files were undocumented 
+          until recently.
+
+        .atx
+        Attribute index.
+        A more recent Esri software-specific attribute index to speed up attribute queries.
+
+        .shp.xml
+        Metadata.
+        A geospatial metadata .xml container. It can be any of the multiple XML standards, including FGDC and ISO.
+
+        .cpg
+        Code page file for .dbf.
+        It is used for the internationalization of .dbf files.
+
+
+
 - CAD Files
 
 - Tag-Based and Markup-Based Formats
