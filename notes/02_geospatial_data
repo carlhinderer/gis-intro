@@ -484,10 +484,56 @@ CHAPTER 2 - LEARNING GEOSPATIAL DATA
 
 - World Files
 
+    - World files are simple text files that can provide geospatial referencing information to any image 
+        externally for files formats that don't have native spatial support.  
+ 
+
+    - World files have the 'jgw', 'tfw', 'bpw', 'pgw', or 'gfw' extension.
+
+
+
 - Point Cloud Data
+
+    - Point cloud data is any data collected as the (x, y, z) location of a surface point based on some sort
+        of focused energy return.  This can be created using lasers, radar waves, acoustic soundings, or other
+        waveform generating devices.  
+
+      The spacing between points is arbitrary and is dependent on the type and position of the sensor.
+
+
+    - We are mostly concerned with radar and LIDAR data.  Radar point cloud data is typically collected on 
+        space missions, while LIDAR is typically collected by terrestrial or airborne vehicles.
+
 
     - LIDAR
 
+        - LIDAR (Light Radar) uses powerful laser range-finding systems to model the world with very high 
+            precision.  LIDAR sensors can be mounted on satellites, airplanes, or vehicles.  
+
+
+        - The most common data format for LIDAR data is the LAS (LIDAR Exchange Format).
+
+
+
 - Web Services
 
+    - Geospatial web services allow users to perform data discovery, data visualization, and data access
+        across the web.  
+
+
+    - The most common web protocols are:
+
+        WMS (Web Map Service)
+        WFS (Web Feature Service)
+
+      Web services might return KML, JSON, GML, zipped shapefiles, and other formats.
+
+
+
 - Geospatial Databases
+
+    - A 'geodatabase' can refer to an entire category of file formats, data schemas, and software.  Here,
+        we're just looking at their attributes as file formats.  
+
+      Geodatabases store vector data in a relational database model.  Data is often stored in BLOBs using
+        the WKB (Well-Known Binary) form.
