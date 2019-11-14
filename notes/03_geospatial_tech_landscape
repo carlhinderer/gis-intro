@@ -90,25 +90,94 @@ CHAPTER 3 - THE GEOSPATIAL TECHNOLOGY LANDSCAPE
 
     - CGAL
 
+      - The CGAL (Computational Geometry Algorithms Library), originally released in the late 1990s,
+          is a robust open source computational geometry library.  It was not specifically designed
+          for geospatial analysis, but is widely used for the purpose.
+
+
+      - CGAL is a source for reliable geometry processing algorithms.  
+
+
     - JTS
+
+      - JTS is a computational geometry library written in pure Java.  It implements OGC Simple Features 
+          specification for SQL.
+
 
     - GEOS
 
+      - GEOS is the C++ port of JTS.  It ended up having a much larger impact on geospatial analysis than
+          the original JTS.
+
+
+      - GEOS can also be compiled with GDAL to use all of its capabilities.
+
+
     - PostGIS
+
+      - PostGIS is the most commonly used open source spatial database.  It is essentially a module on top
+          of PostgreSQL.  Much of its power comes from GEOS.  
+
+
+      - Like JTS, PostGIS implements the OGC Simple Features specification for SQL.  PostGIS allows you
+          to execute both attribute and spatial queries against a dataset.  
+
+
+      - Here is an example:
+
+          # Creates a 14.5-km buffer around Florida, showing the state's nautical boundary
+          SELECT ST_BUFFER(the_geom, 145000)
+          FROM usa_states
+          WHERE state = 'Florida'
+
+
+      - PostGIS has the following features:
+
+          1. Geospatial geometry types
+          2. Spatial functions for deriving new geometries
+          3. Spatial measurements including perimeter, length, and area
+          4. Spatial indexing using the R-tree algorithm
+          5. A basic geospatial raster data type
+          6. Topology data types
+          7. US geocoder based on TIGER census data
+          8. A new JSONB data type which allows querying of JSON and GeoJSON
+
+
 
     - Other Spatially Enabled Databases
 
         - Oracle Spatial and Graph
 
+            Oracle Spatial and Graph provides spatial capabilities to Oracle databases.  It is used for
+              analyzing networked datasets, like transportation, utilities, or social networks.
+
+
         - ArcSDE
+
+             ArcSDE is Esri's spatial data engine.  It was a standalone product, but is now rolled into 
+               ArcGIS.  It can support multiple different database backends.
+
 
         - Sql Server
 
+            Microsoft added spatial support to SQL Server in 2008.  It supports types similar to PostGIS.
+              It also supports the 'WKT' and 'WKB' formats.
+
+
         - MySQL
+
+            MySQL provides support very similar to what Sql Server does.
+
 
         - SpatiaLite
 
+            SpatiaLite is an extension to SQLite.
+
+
         - GeoPackage
+
+            GeoPackage is a file-based geodatabase format.  It is an OGC specification created
+              to replace the aging, close 'shapefile' format.
 
 
 - Routing
