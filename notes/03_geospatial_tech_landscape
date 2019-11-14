@@ -2,13 +2,91 @@
 CHAPTER 3 - THE GEOSPATIAL TECHNOLOGY LANDSCAPE
 ---------------------------------------------------------
 
+
+- The Geospatial Technology Landscape
+
+    - Most geospatial software has 1 or more of these capabilities:
+
+        1. Data Access
+        2. Computational Geometry
+        3. Image Processing
+        4. Visualization Tools
+        5. Metadata Tools
+
+
+
 - Data Access
 
     - GDAL
 
+        - Data access libraries such as GDAL (Geospatial Data Abstraction Library) are mostly written in 
+            C or C++ for speed and cross-platform compatability.  However, you will also see may packages
+            written in Java.
+
+
+        - The GDAL, GEOS (Geometry Engine - Open Source), and PROJ libraries are the workhorses of the
+            geospatial analysis community.
+
+
+        - GDAL was created by Frank Warmerdam in the late 1990s.  Combine GDAL with its sister library
+            OGR for vector data, and you get the software with the greatest impact on geospatial software.
+            GDAL has an MIT license, so it is both commercial- and open source-friendly.
+
+
+        - GDAL provides a single, abstract model for the vast array of raster data types that are found
+            in the geospatial industry.  It consolidates unique data access libraries for different formats.
+
+
+        - In addition to raster data, GDAL supports 70+ vector data formats. GDL has these vecgtor capabilities:
+
+            1. Uniform vector data and modeling abstraction
+            2. Vector data reprojection
+            3. Vector data format conversion
+            4. Attribute data filtering
+            5. Basic geometry filtering
+
+
+        - The GDAL vector architecture has these components:
+
+            1. Geometry = represents the OGC's 'Simple Features' specification data model for points, linestrings,
+                            polygons, geometry collections, multipolygons, multipoints, and multilinestrings
+
+            2. Feature Definition - attribute definitions of a group of related features
+
+            3. Feature = ties Geometry and Feature Definition together
+
+            4. Spatial Reference = contains an OGC spatial reference definition
+
+            5. Layer = represents features grouped as layers in a data source
+
+            6. Data Source = file or database object accessed by GDAL
+
+            7. Drivers = translators for the 70+ data formats
+
+
     - Computational Geometry
 
+        - Computational geometry encompasses the algorithms needed to perform operations on vector data.  
+
+
     - The PROJ Projection Library
+
+        - The PROJ projection library was created by US Geological Survey Jerry Evenden in the mid 1990s.
+            Since then, it has become part of OSGeo (Open Source Geospatial Foundation).
+            
+          It manages the huge task of transforming data among thousands of coordinate systems.  No other
+            library comes close to its capability.
+
+
+        - PROJ uses a simple syntax that is capable of describing any projection, including custom,
+            localized ones.  PROJ can be found in virtually every major GIS package, providing reprojection
+            support and command-line tools.
+
+
+        - PROJ is available through GDAL for vector and raster data.  However, it is often useful to access
+            the library directly, because it gives you the ability to reproject individual points instead
+            of entire datasets.
+
 
     - CGAL
 
